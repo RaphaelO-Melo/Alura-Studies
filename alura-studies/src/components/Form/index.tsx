@@ -45,7 +45,7 @@ class Form extends React.Component {
                     onChange={event => this.setState({...this.state, time: event.target.value})} 
                     required/>
                 </div>
-                <Button>Adicionar</Button>
+                <Button type="submit">Adicionar</Button>
             </form>
         )
     }
