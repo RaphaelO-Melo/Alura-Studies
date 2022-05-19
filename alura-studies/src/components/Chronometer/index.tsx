@@ -6,10 +6,11 @@ import { ITask } from '../../types/task';
 import { useEffect, useState } from 'react';
 
 interface Props{
-    selected: ITask | undefined
+    selected: ITask | undefined,
+    endTask: () => void
 }
 
-export default function Chronometer({selected} : Props) {
+export default function Chronometer({selected, endTask} : Props) {
     
     const [time, setTime] = useState<number>(timeToSeconds(String(selected?.time)));
 
@@ -28,6 +29,8 @@ export default function Chronometer({selected} : Props) {
                 setTime(time - 1);
                 return startCont(time - 1);
             }
+
+            endTask();
 
         }, 1000);
     }

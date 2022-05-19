@@ -23,11 +23,34 @@ function App() {
     )
   }
 
+  function endTask(){
+
+    if(selected){
+
+      setSelected(undefined);
+      setTasks(oldTasks => oldTasks.map(task => {
+
+        if(task.id == selected.id){
+          return {
+            ...task,
+            selected: false,
+            completed: true
+          }
+        }
+
+        return task;
+
+      }));
+
+    }
+
+  }
+
   return (
     <div className={style.AppStyle}>
         <div className={style.dContents}>
           <Form setTasks={setTasks}/>
-          <Chronometer selected={selected}/>
+          <Chronometer selected={selected} endTask={endTask}/>
           <List tasks={tasks} selectTask={selectTask}/>
         </div>
     </div>
