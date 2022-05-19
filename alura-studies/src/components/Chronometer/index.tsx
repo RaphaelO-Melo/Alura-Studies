@@ -21,14 +21,24 @@ export default function Chronometer({selected} : Props) {
 
     }, [selected]);
 
+    function startCont(time: number = 0){
+        setTimeout(() => {
+            
+            if(time > 0){
+                setTime(time - 1);
+                return startCont(time - 1);
+            }
+
+        }, 1000);
+    }
+
     return(
         <div className={chronometer.cronometro}>
             <p className={chronometer.titulo}>Escolha um card e inicie o cronômetro</p>
-            Tempo: {time}
             <div className={chronometer.relogioWrapper}>
-                <Clock/>
+                <Clock time={time}/>
             </div>
-            <Button>Começar!</Button>
+            <Button onClick={()=> startCont(time)}>Começar!</Button>
         </div>
     )
 }
