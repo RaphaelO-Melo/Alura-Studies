@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { ITask } from "../../types/task";
 import Button from "../Button";
 import form from './form.module.scss';
 import {v4 as uuidv4} from 'uuid';
 
-class Form extends React.Component<{
+interface Props{
     setTasks: React.Dispatch<React.SetStateAction<ITask[]>>
-}> {
+}
 
-    state = {
-        'task': '',
-        'time': '00:00:00'
-    }
+function Form ({setTasks} : Props){
 
-    addTask(event: React.FormEvent<HTMLFormElement>){
+    const [task, setTask] = useState("");
+    const [time, setTime] = useState("00:00");
+
+    function addTask(event: React.FormEvent<HTMLFormElement>){
+
         event.preventDefault();
-        this.props.setTasks(
+        setTasks(
             oldTasks => [
                 ...oldTasks,
                 {
-                    ...this.state,
+                    task,
+                    time,
                     selected: false,
                     completed: false,
                     id: uuidv4()
@@ -27,48 +29,44 @@ class Form extends React.Component<{
             ]
         );
 
+        setTime("");
+        setTask("00:00");
 
-        this.setState({
-            task: "",
-            time: ""
-        });
     }
 
-    render(){
-        return(
-            <form className={form.novaTarefa} onSubmit={this.addTask.bind(this)}>
-                <div className={form.inputContainer}>
-                    <label htmlFor="tarefa">
-                        Adicione um novo estudo
-                    </label>
-                    <input
-                    type="text" 
-                    name="tarefa" 
-                    id="tarefa" 
-                    placeholder="O que você quer estudar"
-                    value={this.state.task}
-                    onChange={event => this.setState({...this.state, task: event.target.value})}
-                    required/>
-                </div>
-                <div className={form.inputContainer}>
-                    <label htmlFor="tempo">
-                        Tempo
-                    </label>
-                    <input 
-                    type="time" 
-                    step="1"
-                    name="tempo" 
-                    id="tempo" 
-                    min="00:00:00" 
-                    max="01:30:00" 
-                    value={this.state.time} 
-                    onChange={event => this.setState({...this.state, time: event.target.value})} 
-                    required/>
-                </div>
-                <Button type="submit">Adicionar</Button>
-            </form>
-        )
-    }
+    return(
+        <form className={form.novaTarefa} onSubmit={addTask}>
+            <div className={form.inputContainer}>
+                <label htmlFor="tarefa">
+                    Adicione um novo estudo
+                </label>
+                <input
+                type="text" 
+                name="tarefa" 
+                id="tarefa" 
+                placeholder="O que você quer estudar"
+                value={task}
+                onChange={event => setTask(event.target.value)}
+                required/>
+            </div>
+            <div className={form.inputContainer}>
+                <label htmlFor="tempo">
+                    Tempo
+                </label>
+                <input 
+                type="time" 
+                step="1"
+                name="tempo" 
+                id="tempo" 
+                min="00:00:00" 
+                max="01:30:00" 
+                value={time} 
+                onChange={event => setTime(event.target.value)} 
+                required/>
+            </div>
+            <Button type="submit">Adicionar</Button>
+        </form>
+    )
 }
 
 export default Form;
