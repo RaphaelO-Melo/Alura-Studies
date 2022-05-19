@@ -9,7 +9,7 @@ export default function Item({task, time, selected, completed, id, selectTask}: 
     
     return(
         <li className={`${item.item} ${selected ? item.itemSelecionado : ''} ${completed ? item.itemCompletado : ''}`}
-        onClick={() => selectTask(
+        onClick={() => !completed && selectTask(
             {
                 task,
                 time,

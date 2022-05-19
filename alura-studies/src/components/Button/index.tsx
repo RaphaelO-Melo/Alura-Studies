@@ -1,20 +1,20 @@
 import React from "react";
 import button from './button.module.scss';
 
-class Button extends React.Component<any, {
-    type?: string,
-    onClick?: () => void
-}>{ 
-    render() {
+interface Props {
+    type?: "button" | "submit" | "reset" | undefined,
+    onClick?: () => void,
+    children?: React.ReactNode
+}
 
-        const {type = "button", onClick} = this.props;
+function Button ({onClick, type, children} : Props) {
+    
+    return (
+        <button onClick={onClick} type={type} className={button.botao}>
+            {children}
+        </button>
+    )
 
-        return (
-            <button onClick={onClick} type={type} className={button.botao}>
-                {this.props.children}
-            </button>
-        )
-    }
 }
 
 export default Button;
