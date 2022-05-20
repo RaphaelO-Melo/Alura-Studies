@@ -46,12 +46,17 @@ function App() {
 
   }
 
+  function removeTask(targetTask: ITask){
+    console.log(targetTask);
+    
+  }
+
   return (
     <div className={style.AppStyle}>
         <div className={style.dContents}>
           <Form setTasks={setTasks}/>
           <Chronometer selected={selected} endTask={endTask}/>
-          <List tasks={tasks} selectTask={selectTask}/>
+          <List tasks={tasks} removeTask={removeTask} selectTask={selectTask}/>
         </div>
     </div>
   );

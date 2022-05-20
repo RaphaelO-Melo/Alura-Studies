@@ -19,6 +19,30 @@
     @media screen and (min-width:1280px) {
       font-size: 1.8rem;
     }
+
+    .icones{
+      background-color: red;
+    }
+
+    .lixo{
+      display: block;
+      background-image: url('../../../assets/img/trash.svg');
+      background-repeat: no-repeat;
+      background-size: 38px 38px;
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 43px;
+      filter: invert(1);
+    }
+
+    .lixo:hover{
+      cursor: pointer;
+      background-size: 40px 40px;
+    }
+
   }
   
   .itemSelecionado {
@@ -37,9 +61,10 @@
       background-size: 38px 38px;
       position: absolute;
       top: 50%;
-      right: 12px;
+      right: 55px;
       transform: translateY(-50%);
       width: 42px;
       height: 43px;
     }
+
   }
