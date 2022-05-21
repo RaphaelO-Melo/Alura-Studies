@@ -17,6 +17,7 @@ export default function Chronometer({selected, endTask} : Props) {
     useEffect(() =>{
 
         if(selected?.time){
+            console.log("atualizando tempo", selected);
             setTime(timeToSeconds(selected.time));
         }
 

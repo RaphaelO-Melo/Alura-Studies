@@ -47,12 +47,20 @@ function App() {
   }
 
   function removeTask(targetTask: ITask){
-    
+
+    setTasks(oldTasks => deleteTask(oldTasks, targetTask.id));
     setSelected(undefined);
-    setTasks(oldTasks => oldTasks.filter(task => {
-      return task.id != targetTask.id
-    }));
     
+  }
+
+  function deleteTask(oldTasks: ITask[], targetId: string){
+
+    const newTasks = oldTasks.filter(task => {
+      return task.id != targetId;
+    });
+    
+    return newTasks;
+
   }
 
   return (
