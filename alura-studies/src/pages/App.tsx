@@ -48,8 +48,8 @@ function App() {
 
   function removeTask(targetTask: ITask){
 
-    setTasks(oldTasks => deleteTask(oldTasks, targetTask.id));
     setSelected(undefined);
+    setTasks(oldTasks => deleteTask(oldTasks, targetTask.id));
     
   }
 
@@ -67,7 +67,7 @@ function App() {
     <div className={style.AppStyle}>
         <div className={style.dContents}>
           <Form setTasks={setTasks}/>
-          <Chronometer selected={selected} endTask={endTask}/>
+          <Chronometer tasks={tasks} selected={selected} endTask={endTask}/>
           <List tasks={tasks} removeTask={removeTask} selectTask={selectTask}/>
         </div>
     </div>

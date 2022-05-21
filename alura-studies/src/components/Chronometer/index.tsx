@@ -7,18 +7,27 @@ import { useEffect, useState } from 'react';
 
 interface Props{
     selected: ITask | undefined,
-    endTask: () => void
+    endTask: () => void,
+    tasks: ITask[]
 }
 
-export default function Chronometer({selected, endTask} : Props) {
+export default function Chronometer({selected, endTask, tasks} : Props) {
     
     const [time, setTime] = useState<number>(timeToSeconds(String(selected?.time)));
 
     useEffect(() =>{
 
-        if(selected?.time){
-            console.log("atualizando tempo", selected);
+        var constOn = false;
+        tasks.forEach(task => {
+            if(task.id == selected?.id){
+                constOn = true;
+            }
+        });
+
+        if(selected?.time && constOn){
             setTime(timeToSeconds(selected.time));
+        } else {
+            setTime(timeToSeconds('0'));
         }
 
     }, [selected]);
