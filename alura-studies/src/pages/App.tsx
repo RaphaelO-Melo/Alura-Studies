@@ -47,7 +47,11 @@ function App() {
   }
 
   function removeTask(targetTask: ITask){
-    console.log(targetTask);
+    
+    setSelected(undefined);
+    setTasks(oldTasks => oldTasks.filter(task => {
+      return task.id != targetTask.id
+    }));
     
   }
 
