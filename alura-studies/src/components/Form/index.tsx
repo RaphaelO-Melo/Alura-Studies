@@ -29,8 +29,8 @@ function Form ({setTasks} : Props){
             ]
         );
 
-        setTime("");
-        setTask("00:00");
+        setTask("");
+        setTime("00:00");
 
     }
 
